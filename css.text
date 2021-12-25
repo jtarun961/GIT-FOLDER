@@ -1,0 +1,415 @@
+Q1   What is CSS and how does it work with HTML?
+ANS: CSS stands for Cascading Style Sheets with an emphasis placed on “Style.” While HTML is used to structure a web document
+     (defining things like headlines and paragraphs,and allowing you to embed images,video,and other media),
+     CSS comes through and specifies your document’s style page layouts, colors, and fonts are all determined with CSS.
+     SYNTAX:
+     		<html>
+<head>
+	<title>this ia a css html program</title>
+	<style>
+		p{
+			background-color: lightskyblue;
+			color: darkmagenta;
+		}
+		this is internal css
+	</style>
+	
+</head>
+<body>
+	<h1 style="color:red;">this is a heading</h1>
+	<h2>this is a heading 2</h2>
+	<p>this is a paragraph</p>
+	<p>this  is a internal css</p>
+	<p>this is a inline css</p>
+</body>
+</html>
+
+Q2 What are selectors and what are their different types?
+ANS: There are basically five types of css selectors.
+1) id selector (#)
+    syntax:
+		#path {
+  			text-align: center;
+  			color: red;
+		  }
+
+2) class selector (.)
+
+		.center {
+ 			 text-align: center;
+ 			 color: red;
+			}
+3) unversal selector (*)
+		* {
+  			text-align: center;
+  			color: blue;
+		  }
+4)group selector
+h1 {
+  text-align: center;
+  color: red;
+}
+
+h2 {
+  text-align: center;
+  color: red;
+}
+
+p {
+  text-align: center;
+  color: red;
+}
+
+5) element selector
+p {
+  text-align: center;
+  color: red;
+}
+
+Q3 What is CSS selector specificity and how does it work?
+ANS: CSS specificity: Specificity is the means by which browsers decide which CSS property values are the most relevant to an element and, therefore, will be applied.
+     Specificity is based on the matching rules which are composed of different sorts of CSS selectors.
+     worlk:: <h3 style='color: red'>Hello World</h3>
+
+Q4 Describe z-index and how stacking context is formed.?
+ANS: the z-index property is used to specify:
+1)The stack level of the box in the current stacking context
+2)Whether the box establishes a stacking context
+The default stacking context is the root element, <html>. A stacking context is created when an element is positioned and assigned a z-index value other than auto,
+or when an element has an opacity value less than 1. In WebKit and Chrome 22+ an element with a fixed position always creates a stacking context, even when the z-index value is auto.
+In addition to these properties and values,newer CSS properties and values, such as transform with a value other than none, also create stacking contexts.
+
+Q5 Describe BFC (Block Formatting Context) and how it works.?
+ANS:  A block formatting context is a part of a visual CSS rendering of a web page. It's the region in which the layout of block boxes occurs and in which floats interact with other elements.
+
+A block formatting context is created by at least one of the following:
+
+The root element of the document (<html>).
+Floats (elements where float isn't none).
+Absolutely positioned elements (elements where position is absolute or fixed).
+Inline-blocks (elements with display: inline-block).
+Table cells (elements with display: table-cell, which is the default for HTML table cells).
+Table captions (elements with display: table-caption, which is the default for HTML table captions).
+Anonymous table cells implicitly created by the elements with display: table, table-row, table-row-group, table-header-group,
+table-footer-group (which is the default for HTML tables, table rows, table bodies, table headers, and table footers, respectively), or inline-table.
+Block elements where overflow has a value other than visible and clip.
+display: flow-root.
+Elements with contain: layout, content, or paint.
+Flex items (direct children of the element with display: flex or inline-flex) if they are neither flex nor grid nor table containers themselves.
+Grid items (direct children of the element with display: grid or inline-grid) if they are neither flex nor grid nor table containers themselves.
+Multicol containers (elements where column-count or column-width isn't auto, including elements with column-count: 1).
+column-span: all should always create a new formatting context, even when the column-span: all element isn't contained by a multicol container.
+
+Q6 Have you ever used a grid system, and if so, what do you prefer?
+ANS:Before Flex became popular (around 2014), the float-based grid system was the most reliable because it still has the most browser support among the alternative
+existing systems (flex, grid). Bootstrap was using the float approach until Bootstrap 4 which switched to the flex-based approach. As of writing (2020), flex is the
+recommended approach for building grid systems and has decent browser support.
+For the adventurous, they can look into CSS Grid Layout, which uses the shiny new grid property; it is even better than flex for building grid layouts and will 
+be the de facto way to do so in the future.
+
+Q7 Have you used or implemented media queries or mobile specific layouts/CSS?
+ANS: Yes, there are several ways to color shapes (including specifying attributes on the object) using inline CSS, an embedded CSS section, or an external CSS file.
+Most SVG you'll find around the web use inline CSS, but there are advantages and disadvantages associated with each type.
+
+Basic coloring can be done by setting two attributes on the node: fill and stroke. fill sets the color inside the object and stroke sets the color of the 
+line drawn around the object. You can use the same CSS color naming schemes that you use in HTML, whether that's color names (that is red), RGB values 
+(that is rgb(255,0,0)), Hex values, RGBA values, etc.
+
+<rect
+  x="10"
+  y="10"
+  width="100"
+  height="100"
+  stroke="blue"
+  fill="purple"
+  fill-opacity="0.5"
+  stroke-opacity="0.8"
+/>
+The above fill="purple" is an example of a presentational attribute. Interestingly, and unlike inline styles like style="fill: purple" which also happens to be
+an attribute, presentational attributes can be overriden by CSS styles defined in a stylesheet. So, if you did something like svg { fill: blue; } it would override
+the purple fill we've defined.
+
+Q8 Explain how a browser determines what elements match a CSS selector?
+ANS: This part is related to the above about writing efficient CSS. Browsers match selectors from rightmost (key selector) to left. Browsers filter out elements
+in the DOM according to the key selector and traverse up its parent elements to determine matches. The shorter the length of the selector chain, the faster the
+browser can determine if that element matches the selector.
+For example with this selector p span, browsers firstly find all the <span> elements and traverse up its parent all the way up to the root to find the <p> element. 
+For a particular <span>, as soon as it finds a <p>, it knows that the <span> matches and can stop its matching.
+
+Q9 Describe pseudo-elements and discuss what they are used for?
+ANS: A CSS pseudo-element is a keyword added to a selector that lets you style a specific part of the selected element(s). They can be used for decoration
+(:first-line, :first-letter) or adding elements to the markup (combined with content: ...) without having to modify the markup (:before, :after).
+
+:first-line and :first-letter can be used to decorate text.
+Used in the .clearfix hack as shown above to add a zero-space element with clear: both.
+Triangular arrows in tooltips use :before and :after. Encourages separation of concerns because the triangle is considered part of styling and not really the DOM.
+
+Q10 Explain your understanding of the box mode.
+ANS: The CSS box model describes the rectangular boxes that are generated for elements in the document tree and laid out according to the visual formatting model.
+Each box has a content area (e.g. text, an image, etc.) and optional surrounding padding, border, and margin areas.
+
+The CSS box model is responsible for calculating:
+
+How much space a block element takes up.
+Whether or not borders and/or margins overlap, or collapse.
+A box's dimensions.
+The box model has the following rules:
+
+The dimensions of a block element are calculated by width, height, padding, borders, and margins.
+If no height is specified, a block element will be as high as the content it contains, plus padding (unless there are floats, for which see below).
+If no width is specified, a non-floated block element will expand to fit the width of its parent minus padding.
+The height of an element is calculated by the content's height.
+The width of an element is calculated by the content's width.
+By default, paddings and borders are not part of the width and height of an element.
+
+Q11 What does * { box-sizing: border-box; } do? What are its advantages?
+ANS: By default, elements have box-sizing: content-box applied, and only the content size is being accounted for.
+box-sizing: border-box changes how the width and height of elements are being calculated, border and padding are also being included in the calculation.
+The height of an element is now calculated by the content's height + vertical padding + vertical border width.
+The width of an element is now calculated by the content's width + horizontal padding + horizontal border width.
+Taking into account paddings and borders as part of our box model resonates better with how designers actually imagine content in grids.
+
+Q12 What is the CSS display property and can you give a few examples of its use?
+ANS: The display CSS property sets whether an element is treated as a block or inline element and the layout used for its children, such as flow layout, grid or flex.
+
+Formally, the display property sets an element's inner and outer display types. The outer type sets an element's participation in flow layout; the inner type sets the 
+layout of children. Some values of display are fully defined in their own individual specifications; for example 
+the detail of what happens when display: flex is declared is defined in the CSS Flexible Box Model specification.
+
+Q13  What's the difference between inline and inline-block?
+ANS: I shall throw in a comparison with block for good measure.
+
+	                inline-block	                                 inline
+Size			Depends on content.				Depends on content.
+	       	                 
+Positioning	   Flows along with other content and
+                   allows other elements beside it.
+                 						Flows along with other content and 
+                                                         	allows other elements beside it.
+Can specify width and height
+   					Yes	                          No. Will ignore if being set.
+Can be aligned with vertical-align
+					Yes	                               Yes
+Margins and paddings		All sides respected.		 Only horizontal sides respected. Vertical sides,
+								 if specified, do not affect layout. Vertical space it takes up depends on line-height,
+								 even though the border and padding appear visually around the content.
+
+Q14 What's the difference between the "nth-of-type()" and "nth-child()" selectors?
+ANS: CSS has a number of pseudo-classes to help you style your app with ease. Having lots of options can be great, but it can also be confusing to know which 
+pseudo-class to use and what it really does. Here we’ll look at CSS’s nth-child and nth-of-type pseudo-classes to get a better understanding of when to use 
+each and what the actual difference is.
+
+The nth-child and nth-of-type CSS pseudo-classes are interesting compared to other types of pseudo-classes because they select elements based on their position in the DOM. Whereas some pseudo-classes select a specific state of an element (e.g. the hover,
+active, target pseudo-classes), nth-child and nth-of-type are more concerned with the structure of your markup.
+
+Q15 What's the difference between a relative, fixed, absolute and statically positioned element?
+ANS: Absolute positioning:::: defines the position of a given bounding box from the top and left side margins of the web page.
+This not only allows objects to be placed in an exact location, it also allows objects to be placed one on top of another.
+
+Relative positioning:::: defines the positioning in such a way that elements are offset from the previous element in the HTML code.
+This allows objects to be placed in relation to one another.
+
+Fixed positioning ::::defines the position of a given box relative to the window and remains in its specified location even as the content scrolls underneath it.
+This value does not work in Internet Explorer 6 or earlier. In IE 7, the browser must be in “standards-compliance mode”.
+
+Static positioning ::::is the default. It defines the position of a given box essentially as an unpositioned element –
+it flows in the normal rendering sequence of the web page.
+
+Q16 What existing CSS frameworks have you used locally, or in production? How would you change/improve them?
+ANS :: skeleton framework
+
+Q17 Have you used CSS Grid?
+ANS: Yes i am using css grid
+    example
+̵<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+<style>
+    .gridParent{
+        display: grid;
+        padding: 10px;
+        background-color: lightblue;        
+        grid-template-columns: auto auto auto;
+        grid-gap: 30px 30px;        
+    }
+    .gridChild{
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+    }    
+    .gridChild1{
+        padding: 5px;
+        text-align: center;
+        border: 1px solid black;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+</style>
+
+</head>
+
+<body>
+    <div class="gridParent">
+        <div class="gridChild1">Item 1</div>
+        <div class="gridChild">Item 2</div>
+        <div class="gridChild">Item 3</div>
+        <div class="gridChild">Item 4</div>
+        <div class="gridChild">Item 5</div>
+        <div class="gridChild">Item 6</div>
+        <div class="gridChild">Item 7</div>
+        <div class="gridChild">Item 8</div>
+        <div class="gridChild">Item 9</div>
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
